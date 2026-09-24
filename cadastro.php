@@ -45,8 +45,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar conta - MyPocket</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d6a62;
+            --primary-dark: #214f4a;
+            --bg: #f4f6f3;
+            --surface: #ffffff;
+            --border: #e5e7e6;
+            --text: #1f2d2b;
+            --muted: #64706d;
+            --shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+        }
+
+        body {
+            background: linear-gradient(180deg, #eef3f1 0%, var(--bg) 100%);
+            color: var(--text);
+            font-family: "Segoe UI", system-ui, sans-serif;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #fff;
+            box-shadow: none;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 <main class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4">

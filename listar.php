@@ -25,14 +25,97 @@ $transacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Todas as Transações - MyPocket</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .receita { color: #28a745; font-weight: bold; }
-        .despesa { color: #dc3545; font-weight: bold; }
-        .diario { color: #fd7e14; font-weight: bold; }
+        :root {
+            --primary: #2d6a62;
+            --primary-dark: #214f4a;
+            --bg: #f4f6f3;
+            --surface: #ffffff;
+            --surface-muted: #f8faf8;
+            --border: #e5e7e6;
+            --text: #1f2d2b;
+            --muted: #64706d;
+            --success: #2d6a62;
+            --danger: #b65151;
+            --warning: #c98d2b;
+            --shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Segoe UI", system-ui, sans-serif;
+        }
+
+        .navbar {
+            background: var(--surface) !important;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 10px rgba(17, 24, 39, 0.02);
+        }
+
+        .navbar-brand,
+        .nav-link,
+        .navbar-text {
+            color: var(--text) !important;
+        }
+
+        .nav-link.active {
+            color: var(--primary) !important;
+            font-weight: 600;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .table thead th {
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-success {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .btn-secondary {
+            background: #edf2ef;
+            border-color: #edf2ef;
+            color: var(--text);
+        }
+
+        .receita { color: var(--success); font-weight: 600; }
+        .despesa { color: var(--danger); font-weight: 600; }
+        .diario { color: var(--warning); font-weight: 600; }
+
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #fff;
+            box-shadow: none;
+        }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">MyPocket</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

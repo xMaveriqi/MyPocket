@@ -92,10 +92,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Transação - MyPocket</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d6a62;
+            --primary-dark: #214f4a;
+            --bg: #f4f6f3;
+            --surface: #ffffff;
+            --surface-muted: #f8faf8;
+            --border: #e5e7e6;
+            --text: #1f2d2b;
+            --muted: #64706d;
+            --success: #2d6a62;
+            --danger: #b65151;
+            --warning: #c98d2b;
+            --shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Segoe UI", system-ui, sans-serif;
+        }
+
+        .navbar {
+            background: var(--surface) !important;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 10px rgba(17, 24, 39, 0.02);
+        }
+
+        .navbar-brand,
+        .nav-link,
+        .navbar-text {
+            color: var(--text) !important;
+        }
+
+        .nav-link.active {
+            color: var(--primary) !important;
+            font-weight: 600;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .card-header {
+            background: var(--surface-muted) !important;
+            color: var(--text) !important;
+            border-bottom: 1px solid var(--border);
+            border-radius: 14px 14px 0 0 !important;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: #edf2ef;
+            border-color: #edf2ef;
+            color: var(--text);
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #fff;
+            box-shadow: none;
+        }
+    </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">MyPocket</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

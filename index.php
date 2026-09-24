@@ -58,12 +58,131 @@ $saldoAno = $totais['receita'] - $totais['despesa'] - $totais['diario'];
     <title>mypocket</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .receita { color: #28a745; font-weight: bold; }
-        .despesa { color: #dc3545; font-weight: bold; }
+        :root {
+            --primary: #2d6a62;
+            --primary-dark: #214f4a;
+            --bg: #f4f6f3;
+            --surface: #ffffff;
+            --surface-muted: #f8faf8;
+            --border: #e5e7e6;
+            --text: #1f2d2b;
+            --muted: #64706d;
+            --success: #2d6a62;
+            --danger: #b65151;
+            --warning: #c98d2b;
+            --shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Segoe UI", system-ui, sans-serif;
+        }
+
+        .navbar {
+            background: var(--surface) !important;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 10px rgba(17, 24, 39, 0.02);
+        }
+
+        .navbar-brand,
+        .nav-link,
+        .navbar-text {
+            color: var(--text) !important;
+        }
+
+        .nav-link.active {
+            color: var(--primary) !important;
+            font-weight: 600;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .card-header {
+            background: var(--surface-muted) !important;
+            color: var(--text) !important;
+            border-bottom: 1px solid var(--border);
+            border-radius: 14px 14px 0 0 !important;
+        }
+
+        .card-body {
+            padding: 1.25rem 1.35rem;
+        }
+
+        .card-title,
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-success {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .receita { color: var(--success); font-weight: 600; }
+        .despesa { color: var(--danger); font-weight: 600; }
+        .text-success { color: var(--success) !important; }
+        .text-danger { color: var(--danger) !important; }
+        .text-warning { color: var(--warning) !important; }
+
+        .table {
+            --bs-table-bg: transparent;
+            color: var(--text);
+        }
+
+        .table thead th {
+            border-bottom: 1px solid var(--border);
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+        }
+
+        .table td,
+        .table th {
+            padding-top: 0.9rem;
+            padding-bottom: 0.9rem;
+        }
+
+        .alert {
+            border-radius: 12px;
+            border: 1px solid transparent;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #fff;
+            box-shadow: none;
+        }
+
+        .display-6 {
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">MyPocket</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -109,34 +228,6 @@ $saldoAno = $totais['receita'] - $totais['despesa'] - $totais['diario'];
                 </div>
             </div>
         <?php endif; ?>
-
-        <div class="col-12">
-            <form class="row g-2 align-items-end" method="get">
-                <div class="col-sm-4 col-md-3">
-                    <label class="form-label" for="ano">Ano</label>
-                    <select class="form-select" id="ano" name="ano">
-                        <?php for ($opcaoAno = (int) date('Y') - 5; $opcaoAno <= (int) date('Y') + 5; $opcaoAno++): ?>
-                            <option value="<?= $opcaoAno ?>" <?= $opcaoAno === $ano ? 'selected' : '' ?>><?= $opcaoAno ?></option>
-                        <?php endfor; ?>
-                    </select>
-                </div>
-                <div class="col-sm-5 col-md-4">
-                    <label class="form-label" for="filtro">Filtrar extrato</label>
-                    <select class="form-select" id="filtro" name="filtro">
-                        <option value="todos" <?= $filtro === 'todos' ? 'selected' : '' ?>>Todos</option>
-                        <option value="receita" <?= $filtro === 'receita' ? 'selected' : '' ?>>Receitas</option>
-                        <option value="diario" <?= $filtro === 'diario' ? 'selected' : '' ?>>Diário</option>
-                        <option value="despesa" <?= $filtro === 'despesa' ? 'selected' : '' ?>>Despesas</option>
-                    </select>
-                </div>
-                <div class="col-auto"><button class="btn btn-primary" type="submit">Filtrar</button></div>
-            </form>
-        </div>
-
-        <div class="col-md-3"><div class="card border-success shadow-sm"><div class="card-body"><h2 class="h6">Receitas em <?= $ano ?></h2><p class="h4 text-success mb-0"><?= formatarValor($totais['receita']) ?></p></div></div></div>
-        <div class="col-md-3"><div class="card border-warning shadow-sm"><div class="card-body"><h2 class="h6">Diário em <?= $ano ?></h2><p class="h4 text-warning mb-0"><?= formatarValor($totais['diario']) ?></p></div></div></div>
-        <div class="col-md-3"><div class="card border-danger shadow-sm"><div class="card-body"><h2 class="h6">Despesas em <?= $ano ?></h2><p class="h4 text-danger mb-0"><?= formatarValor($totais['despesa']) ?></p></div></div></div>
-        <div class="col-md-3"><div class="card border-primary shadow-sm"><div class="card-body"><h2 class="h6">Saldo do ano</h2><p class="h4 <?= $saldoAno >= 0 ? 'text-primary' : 'text-danger' ?> mb-0"><?= formatarValor($saldoAno) ?></p></div></div></div>
 
         <div class="col-12">
             <?php
