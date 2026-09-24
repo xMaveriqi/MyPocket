@@ -148,16 +148,6 @@ Dashboard (index.php)
 - O saldo é calculado a partir do histórico, não armazenado como um valor separado.
 - Receitas aumentam o saldo; despesas e lançamentos diários reduzem o saldo.
 
-## Organização do código
-
-As páginas PHP funcionam como entradas da aplicação. Regras reutilizáveis ficam
-nas classes e serviços, enquanto conexão, autenticação e helpers ficam em módulos
-separados. Isso evita repetir consultas, validações e funções de apresentação em
-vários arquivos.
-
-Os comentários do código destacam decisões de negócio, migrações e pontos em que
-uma regra pode não ser óbvia. A implementação mantém os nomes e a estrutura
-próprios do projeto, sem depender de arquivos externos.
 
 ## Segurança
 
@@ -167,6 +157,3 @@ próprios do projeto, sem depender de arquivos externos.
 - Saídas HTML são escapadas antes de serem exibidas.
 - Páginas privadas exigem uma sessão autenticada.
 - Edição e exclusão verificam o `user_id` do registro.
-
-Em produção, configure credenciais por variáveis de ambiente, desative mensagens
-detalhadas de erro e use HTTPS.
